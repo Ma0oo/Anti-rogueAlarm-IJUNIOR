@@ -8,7 +8,7 @@ public class Alarm : MonoBehaviour
     [Min(1)][SerializeField] private float _timeToFullVolume;
 
     private AudioSource _audioSource;
-    private Coroutine action;
+    private Coroutine _action;
 
     private void Awake()
     {
@@ -19,14 +19,14 @@ public class Alarm : MonoBehaviour
     public void TurnOn()
     {
         _audioSource.Play();
-        action = StartCoroutine(IncreaseVolume(_timeToFullVolume));
+        _action = StartCoroutine(IncreaseVolume(_timeToFullVolume));
     }
     public void TurnOff()
     {
-        if (action != null)
+        if (_action != null)
         {
-            StopCoroutine(action);
-            action = null;
+            StopCoroutine(_action);
+            _action = null;
         }
         _audioSource.volume = 0;
         _audioSource.Stop();
