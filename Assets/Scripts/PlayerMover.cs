@@ -19,7 +19,7 @@ public class PlayerMover : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _camera = GetComponentInChildren<Camera>();
+        _camera = Camera.main;
         _rotateToBody = transform.eulerAngles;
         _rotateToCameraLocal = transform.localEulerAngles;
     }
