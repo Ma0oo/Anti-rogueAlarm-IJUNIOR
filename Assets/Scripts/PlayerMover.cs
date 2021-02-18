@@ -6,9 +6,10 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMover : MonoBehaviour
 {
-
     [SerializeField] private float _sensitivity;
     [SerializeField] private float _maxSpeed;
+    [Range(0,90)] [SerializeField] private float _maxAngelDown;
+    [Range(0, -90)] [SerializeField] private float _maxAngelUp;
 
     private Rigidbody _rigidbody;
     private Camera _camera;
@@ -22,6 +23,7 @@ public class PlayerMover : MonoBehaviour
         _rotateToBody = transform.eulerAngles;
         _rotateToCameraLocal = transform.localEulerAngles;
     }
+
     private void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.W))
@@ -35,19 +37,19 @@ public class PlayerMover : MonoBehaviour
             Move(-transform.right);
         Rotate();
     }
+
     private void Move(Vector3 direction)
     {
         _rigidbody.AddForce(direction * _maxSpeed);
     }   
+
     private void Rotate()
     {
         _rotateToBody.y += Input.GetAxis("Mouse X") * _sensitivity;
         transform.eulerAngles = _rotateToBody;
+
         _rotateToCameraLocal.x -= Input.GetAxis("Mouse Y") * _sensitivity;
-        if (_rotateToCameraLocal.x < -45)
-            _rotateToCameraLocal.x = -45;
-        if (_rotateToCameraLocal.x > 45)
-            _rotateToCameraLocal.x = 45;
+        _rotateToCameraLocal.x = Mathf.Clamp(_rotateToCameraLocal.x, _maxAngelUp, _maxAngelDown);
         _camera.transform.localEulerAngles = _rotateToCameraLocal;
     }
 }

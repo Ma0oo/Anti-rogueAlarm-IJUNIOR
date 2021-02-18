@@ -8,6 +8,7 @@ public class Door : MonoBehaviour, IInteractive
     [SerializeField] private Transform _pivotDoorPanel;
     [SerializeField] private Vector3 _openlocalEulerAngelPanel;
     [SerializeField] private Door _targetDool;
+    [SerializeField] private TransitTriger _transitPlace;
     [SerializeField] private Transform _pointExit;
     [SerializeField] private UnityEvent _somewhoHasExit;
 
@@ -19,7 +20,9 @@ public class Door : MonoBehaviour, IInteractive
         {
             Debug.LogWarning("У двери нет цели");
         }
+        _transitPlace.Init(this);
     }
+
     public void Open()
     {
         if (!_isOpen)
@@ -29,6 +32,7 @@ public class Door : MonoBehaviour, IInteractive
             _targetDool.Open();
         }
     }
+
     public void Close()
     {
         if (_isOpen)
@@ -38,10 +42,12 @@ public class Door : MonoBehaviour, IInteractive
             _targetDool.Close();
         }
     }
+
     public void DoTransitObject(GameObject transitObject)
     {
         _targetDool.GetTransitObject(transitObject);
     }
+
     public void GetTransitObject(GameObject transitObject)
     {
         transitObject.transform.position = _pointExit.position;

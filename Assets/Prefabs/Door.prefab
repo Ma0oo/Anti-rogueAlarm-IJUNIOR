@@ -111,6 +111,7 @@ MonoBehaviour:
   _pivotDoorPanel: {fileID: 8802323717881309983}
   _openlocalEulerAngelPanel: {x: 0, y: -90, z: 0}
   _targetDool: {fileID: 0}
+  _transitPlace: {fileID: 8723408178780487053}
   _pointExit: {fileID: 8802323717032623380}
   _somewhoHasExit:
     m_PersistentCalls:
@@ -223,7 +224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a7f42d10062364890f8668dc3e690d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _myDoor: {fileID: 4404305727972188873}
 --- !u!1 &8802323717032623371
 GameObject:
   m_ObjectHideFlags: 0

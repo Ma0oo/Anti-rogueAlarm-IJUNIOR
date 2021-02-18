@@ -1285,6 +1285,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sensitivity: 5
   _maxSpeed: 20
+  _maxAngelDown: 30
+  _maxAngelUp: 0
 --- !u!54 &861020769
 Rigidbody:
   m_ObjectHideFlags: 0
