@@ -20,12 +20,12 @@ public class Alarm : MonoBehaviour
     {
         TryDeleteCoroutine();
         _audioSource.Play();
-        _action = StartCoroutine(IncreaseVolume(_timeToFullChangeVolume, 5));
+        _action = StartCoroutine(ChangeVolume(_timeToFullChangeVolume, 5));
     }
     public void TurnOff()
     {
         TryDeleteCoroutine();
-        _action = StartCoroutine(IncreaseVolume(_timeToFullChangeVolume, 0));
+        _action = StartCoroutine(ChangeVolume(_timeToFullChangeVolume, 0));
         Invoke("StopPlaySource", _timeToFullChangeVolume);
     }
     private void TryDeleteCoroutine()
@@ -40,7 +40,7 @@ public class Alarm : MonoBehaviour
     {
         _audioSource.Stop();
     }
-    private IEnumerator IncreaseVolume(float timeToChange, float volumeTarget)
+    private IEnumerator ChangeVolume(float timeToChange, float volumeTarget)
     {
         float timeFromStart = 0;
 
