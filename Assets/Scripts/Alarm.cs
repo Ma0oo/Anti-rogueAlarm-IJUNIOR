@@ -20,7 +20,7 @@ public class Alarm : MonoBehaviour
     {
         TryDeleteCoroutine();
         _audioSource.Play();
-        _action = StartCoroutine(IncreaseVolume(_timeToFullChangeVolume, 1));
+        _action = StartCoroutine(IncreaseVolume(_timeToFullChangeVolume, 5));
     }
     public void TurnOff()
     {
@@ -44,13 +44,9 @@ public class Alarm : MonoBehaviour
     {
         float timeFromStart = 0;
 
-        if (timeToChange < 0)
-            timeToChange = 1;
+        timeToChange = Mathf.Max(1, timeToChange);
+        volumeTarget = Mathf.Clamp(volumeTarget, 0, 1);
 
-        if (volumeTarget > 1)
-            volumeTarget = 1;
-        if (volumeTarget < 0)
-            volumeTarget = 0;
         while (timeFromStart < timeToChange)
         {
             _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, volumeTarget, Time.deltaTime/timeToChange);
